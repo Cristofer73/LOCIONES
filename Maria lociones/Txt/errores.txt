@@ -1,0 +1,252 @@
+
+Informe de Control de Errores y Soluciones
+Errores detectados:
+
+1.Rutas relativas de recursos locales y archivos:
+
+Las rutas relativas como ../Maria lociones/... pueden fallar dependiendo de la estructura del proyecto o la ubicación del archivo HTML actual.
+Los espacios en el nombre de carpeta Maria lociones son problemáticos y pueden causar errores al resolver rutas.
+
+2.Etiqueta <form>:
+
+El atributo name (name="Form1") no es necesario para la funcionalidad del formulario.
+El atributo method="get" puede no ser adecuado para datos sensibles como números de cédula o correos electrónicos. Debería ser method="post".
+
+3.Accesibilidad y buenas prácticas:
+
+Falta el atributo alt en varias etiquetas <img>, lo que afecta la accesibilidad.
+Los campos del formulario no tienen etiquetas asociadas correctamente con el atributo for. Esto puede confundir a los usuarios y herramientas de asistencia.
+
+4.Checkboxes del formulario:
+
+Los checkboxes (<input type="checkbox">) para "Método de envío" deberían ser radio buttons, ya que los métodos son excluyentes.
+
+5.Botón de carrito:
+
+Dentro del enlace <a>, se incluye un botón, lo cual no sigue las mejores prácticas HTML5. Podría causar problemas de estilo o funcionalidad en navegadores.
+
+6.Falta de validación de formularios:
+
+No hay validación explícita para los campos del formulario (HTML5 o JavaScript).
+
+7.Uso excesivo de etiquetas <br>:
+
+Las etiquetas <br> están mal utilizadas para generar espacio. Esto no es semántico y afecta el diseño responsivo.
+
+8.Clase repetida .footer-links:
+
+La clase .footer-links está repetida en varias secciones del footer. Si requiere estilos únicos, debe utilizarse una clase o ID diferente.
+
+9.Meta descripción ausente:
+
+El <head> no incluye una etiqueta <meta> para descripción del sitio web, importante para SEO.
+
+10.Errores tipográficos:
+
+Número cédular debería ser Número celular.
+Síguemos debería ser Síguenos.
+
+
+
+
+
+
+
+Soluciones propuestas:
+
+1.Corrección de rutas:
+
+Cambiar el nombre de la carpeta Maria lociones a MariaLociones o similar para evitar espacios. Por ejemplo:
+html
+Copiar código
+<a href="../MariaLociones/index.html">Inicio</a>
+Asegurarse de que las rutas relativas sean coherentes con la estructura del proyecto.
+
+2.Formulario:
+
+Cambiar el atributo method="post":
+html
+Copiar código
+<form method="post">
+Usar radio buttons en lugar de checkboxes para los métodos de envío:
+html
+Copiar código
+<input type="radio" name="envio" value="regular" id="regular">
+<label for="regular">Envío Regular: $20.000 (cinco días hábiles)</label>
+<br>
+<input type="radio" name="envio" value="contra" id="contra">
+<label for="contra">Contra entrega: $30.000</label>
+Asociar etiquetas <label> con los inputs usando el atributo for:
+html
+Copiar código
+<label for="nombre">Nombres y Apellidos:</label>
+<input type="text" id="nombre" name="nombre" placeholder="Escriba sus nombres y apellidos completos">
+Accesibilidad:
+
+Asegurar que todas las etiquetas <img> tengan un atributo alt significativo. Por ejemplo:
+html
+Copiar código
+<img src="../MariaLociones/Img/carritoboton.png" alt="Carrito de compras">
+SEO y metadata:
+
+Agregar una etiqueta <meta> para la descripción del sitio:
+html
+Copiar código
+<meta name="description" content="Maria Lociones: Perfumes para hombres, mujeres, y cuidado personal en Colombia.">
+Espaciado semántico:
+
+Reemplazar los <br> por estilos CSS:
+css
+Copiar código
+.spacer {
+    margin-top: 20px;
+}
+Y en el HTML:
+html
+Copiar código
+<div class="spacer"></div>
+Estructura del footer:
+
+Usar clases o IDs únicos si cada sección del footer requiere estilos distintos:
+html
+Copiar código
+<div class="footer-links" id="compania">
+    <h4>Compañía</h4>
+    ...
+</div>
+Mejoras en el botón de carrito:
+
+Mover el botón fuera del enlace o usar solo uno de los dos elementos:
+html
+Copiar código
+<a href="../MariaLociones/carrito.html">
+    <img src="../MariaLociones/Img/carritoboton.png" alt="Carrito">
+</a>
+<button type="button" class="btn btn-danger">Carrito de compras</button>
+Tipografía:
+
+Corregir errores tipográficos en textos visibles.
+Validación de formularios:
+
+Implementar validaciones HTML5:
+html
+Copiar código
+<input type="email" placeholder="Escriba su email" required>
+
+
+
+
+
+
+Informe de Control de Errores y Soluciones
+
+Errores detectados (diferentes a los mencionados anteriormente): 
+
+11. **Atributos `name` e `id` en etiquetas de formulario vacíos:**  
+   - En el formulario, los atributos `name` e `id` están definidos pero no contienen valores. Esto afecta la funcionalidad, especialmente si los datos se envían al backend.  
+     ```html
+     <input type="submit" name="" id="">
+     ```  
+
+12. **Imagen de logo con nombre extenso y caracteres especiales:**  
+   - El nombre del archivo de la imagen del logo es demasiado largo y contiene espacios, caracteres especiales y paréntesis, lo que puede causar problemas de carga en algunos navegadores.  
+     ```html
+     <img src="Img/Logo con Tipografía para Iniciales del Nombre Profesional Circular Limpio Elegante Blanco Negro (2).png" alt="">
+     ```  
+
+13. **Etiqueta `<br>` mal utilizada:**  
+   - Se usaron múltiples etiquetas `<br>` para espaciado visual, lo cual no es semántico ni eficiente para diseño responsivo.  
+
+14. **Falta de atributos `required` en el formulario:**  
+   - Los campos de entrada del formulario (`Usuario` y `Contraseña`) no están marcados como obligatorios, lo que permite enviar formularios incompletos.  
+
+15. **Falta de favicon en la página web:**  
+   - No se incluyó un favicon en el `<head>` para personalizar el ícono del sitio en el navegador.  
+
+16. **Rutas relativas mal definidas en enlaces:**  
+   - Las rutas relativas incluyen espacios en el nombre de carpeta `Maria lociones`, lo que puede generar errores.  
+
+17. **Sin prevención de accesos no seguros:**  
+   - No hay validaciones para proteger el formulario de entradas inseguras (por ejemplo, ataques de inyección de código).  
+
+18. **Atributo `aria-*` ausente en los enlaces de redes sociales:**  
+   - Los íconos de redes sociales no contienen atributos `aria-label`, lo que afecta la accesibilidad para lectores de pantalla.  
+
+19. **Uso incorrecto del atributo `lang` en el HTML:**  
+   - Aunque se especifica `lang="es"`, no se especifica si es `es-ES`, `es-MX` u otro dialecto. Esto puede impactar a herramientas de traducción y accesibilidad.  
+
+20. **Título del formulario ambiguo:**  
+    - El texto **"Bienvenidos - Formularios"** no es descriptivo y no brinda suficiente contexto sobre la funcionalidad del formulario.  
+
+---
+
+Soluciones propuestas: 
+
+11. Corregir atributos `name` e `id`:  
+   - Asignar valores significativos a estos atributos para identificar correctamente los elementos:  
+     ```html
+     <input type="submit" name="submit" id="submit-button">
+     ```  
+
+12. Renombrar el archivo de la imagen del logo:  
+   - Cambiar el nombre del archivo a algo más corto y sin caracteres especiales:  
+     ```html
+     <img src="Img/logo_tipografia.png" alt="Logo de Maria Lociones">
+     ```  
+
+13. Eliminar uso excesivo de `<br>` y utilizar CSS para espaciado:  
+   - Reemplazar los saltos de línea con márgenes o padding en CSS:  
+     ```css
+     .espaciado {
+         margin-top: 20px;
+     }
+     ```  
+     En el HTML:  
+     ```html
+     <div class="espaciado"></div>
+     ```  
+
+14. Hacer los campos obligatorios con `required`:  
+   - Agregar el atributo `required` a los campos del formulario:  
+     ```html
+     <input type="email" required placeholder="Ingrese su correo">
+     <input type="password" required placeholder="Ingrese su contraseña">
+     ```  
+
+15. Agregar un favicon: 
+   - Incluir un favicon en el `<head>` para mejorar la personalización del sitio:  
+     ```html
+     <link rel="icon" href="Img/favicon.ico" type="image/x-icon">
+     ```  
+
+16. Corregir rutas relativas:  
+   - Renombrar la carpeta `Maria lociones` a `MariaLociones` para eliminar los espacios:  
+     ```html
+     <a href="../MariaLociones/index.html">Inicio</a>
+     ```  
+
+17. Validaciones de seguridad:
+   - Implementar validaciones básicas en HTML y reforzarlas con JavaScript. Por ejemplo:  
+     ```html
+     <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Ingrese un correo válido">
+     ```  
+
+18. Accesibilidad en enlaces de redes sociales:  
+   - Agregar atributos `aria-label` a los enlaces para mejorar la accesibilidad:  
+     ```html
+     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+     ```  
+
+19. Especificar idioma en el atributo `lang`:  
+   - Cambiar `lang="es"` a un dialecto más específico, como `lang="es-ES"` para español de España o `lang="es-CO"` para español de Colombia:  
+     ```html
+     <html lang="es-CO">
+     ```  
+
+20. Título del formulario descriptivo: 
+    - Cambiar el título a algo más informativo:  
+      `html
+      <h1>Iniciar sesión en Maria Lociones</h1>
+        
+
+
